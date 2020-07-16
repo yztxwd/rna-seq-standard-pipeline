@@ -14,7 +14,8 @@ def get_fq(wildcards):
 
 rule align:
     input:
-        sample=get_fq
+        fq1="trimmed/{sample}-{unit}.1.fastq.gz",
+        fq2="trimmed/{sample}-{unit}.2.fastq.gz"
     output:
         # see STAR manual for additional output files
         "star/{sample}-{unit}/Aligned.out.bam",
