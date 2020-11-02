@@ -10,7 +10,7 @@ rule trim_pe:
     log:
         "output/logs/trimmomatic/{sample}-{unit}.trimmomatic.log"
     params:
-        trimmer=["ILLUMINACLIP:" + config["trimmomatic"]["adapter"] + config["trimmomatic"]["pe_adapter_trimmer"], config["trimmomatic"]["trimmer"]]
+        trimmer=["ILLUMINACLIP:" + config["trimmomatic"]["pe_adapter"] + config["trimmomatic"]["adapter_trimmer"], config["trimmomatic"]["trimmer"]]
     threads:
         config["threads"]
     wrapper:
@@ -24,7 +24,7 @@ rule trim_se:
     log:
         "output/logs/trimmomatic/{sample}-{unit}.trimmomatic.log"
     params:
-        trimmer=["ILLUMINACLIP:" + config["trimmomatic"]["adapter"] + config["trimmomatic"]["se_adapter_trimmer"], config["trimmomatic"]["trimmer"]]
+        trimmer=["ILLUMINACLIP:" + config["trimmomatic"]["se_adapter"] + config["trimmomatic"]["adapter_trimmer"], config["trimmomatic"]["trimmer"]]
     threads:
         config["threads"]
     wrapper:

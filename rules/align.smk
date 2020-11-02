@@ -1,7 +1,7 @@
 rule align_pe:
     input:
-        fq1="trimmed/{sample}-{unit}.1.trim.fastq.gz",
-        fq2="trimmed/{sample}-{unit}.2.trim.fastq.gz"
+        fq1="output/trimmed/{sample}-{unit}.1.trim.fastq.gz",
+        fq2="output/trimmed/{sample}-{unit}.2.trim.fastq.gz"
     output:
         # see STAR manual for additional output files
         "star/{sample}-{unit}/Aligned.pe.out.bam",
@@ -20,7 +20,7 @@ rule align_pe:
 
 rule align_se:
     input:
-        fq1="trimmed/{sample}-{unit}.trim.fastq.gz"
+        fq1="output/trimmed/{sample}-{unit}.trim.fastq.gz"
     output:
         # see STAR manual for additional output files
         "star/{sample}-{unit}/Aligned.se.out.bam",

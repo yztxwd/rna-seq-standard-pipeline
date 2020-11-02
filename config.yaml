@@ -9,6 +9,8 @@ samples: samples.tsv
 
 units: units.tsv
 
+threads: 32
+
 trimmomatic:
   trimmer: "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:15"
   pe_adapter: "path/to/pe/adapter"

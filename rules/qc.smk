@@ -16,7 +16,7 @@ rule rseqc_gtf2bed:
   
 rule rseqc_junction_annotation:
     input:
-        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
+        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards.sample, wildcards.unit) else "star/{sample}-{unit}/Aligned.pe.out.bam",
         bed="qc/rseqc/annotation.bed"
     output:
         "qc/rseqc/{sample}-{unit}.junctionanno.junction.bed"

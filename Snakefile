@@ -24,8 +24,8 @@ rule all:
         expand(["results/diffexp/{contrast}.diffexp.tsv",
                 "results/diffexp/{contrast}.ma-plot.svg"],
                contrast=config["diffexp"]["contrasts"]),
-        results/pca.svg",
-        qc/multiqc_report.html"
+        "results/pca.svg",
+        "qc/multiqc_report.html"
 
 
 ##### setup singularity #####
