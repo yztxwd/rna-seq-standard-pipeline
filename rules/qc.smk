@@ -16,7 +16,7 @@ rule rseqc_gtf2bed:
   
 rule rseqc_junction_annotation:
     input:
-        bam="star/{sample}-{unit}/Aligned.out.bam",
+        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
         bed="qc/rseqc/annotation.bed"
     output:
         "qc/rseqc/{sample}-{unit}.junctionanno.junction.bed"
@@ -35,7 +35,7 @@ rule rseqc_junction_annotation:
         
 rule rseqc_junction_saturation:
     input:
-        bam="star/{sample}-{unit}/Aligned.out.bam",
+        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
         bed="qc/rseqc/annotation.bed"
     output:
         "qc/rseqc/{sample}-{unit}.junctionsat.junctionSaturation_plot.pdf"
@@ -54,7 +54,7 @@ rule rseqc_junction_saturation:
 
 rule rseqc_stat:
     input:
-        "star/{sample}-{unit}/Aligned.out.bam",
+        lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
     output:
         "qc/rseqc/{sample}-{unit}.stats.txt"
     priority: 1
@@ -68,7 +68,7 @@ rule rseqc_stat:
         
 rule rseqc_infer:
     input:
-        bam="star/{sample}-{unit}/Aligned.out.bam",
+        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
         bed="qc/rseqc/annotation.bed"
     output:
         "qc/rseqc/{sample}-{unit}.infer_experiment.txt"
@@ -83,7 +83,7 @@ rule rseqc_infer:
         
 rule rseqc_innerdis:
     input:
-        bam="star/{sample}-{unit}/Aligned.out.bam",
+        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
         bed="qc/rseqc/annotation.bed"
     output:
         "qc/rseqc/{sample}-{unit}.inner_distance_freq.inner_distance.txt"
@@ -100,7 +100,7 @@ rule rseqc_innerdis:
 
 rule rseqc_readdis:
     input:
-        bam="star/{sample}-{unit}/Aligned.out.bam",
+        bam=lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam",
         bed="qc/rseqc/annotation.bed"
     output:
         "qc/rseqc/{sample}-{unit}.readdistribution.txt"
@@ -115,7 +115,7 @@ rule rseqc_readdis:
 
 rule rseqc_readdup:
     input:
-        "star/{sample}-{unit}/Aligned.out.bam"
+        lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam"
     output:
         "qc/rseqc/{sample}-{unit}.readdup.DupRate_plot.pdf"
     priority: 1
@@ -131,7 +131,7 @@ rule rseqc_readdup:
         
 rule rseqc_readgc:
     input:
-        "star/{sample}-{unit}/Aligned.out.bam"
+        lambda wildcards: "star/{sample}-{unit}/Aligned.se.out.bam" if is_single_end(wildcards) else "star/{sample}-{unit}/Aligned.pe.out.bam"
     output:
         "qc/rseqc/{sample}-{unit}.readgc.GC_plot.pdf"
     priority: 1

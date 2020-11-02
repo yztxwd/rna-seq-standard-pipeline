@@ -5,9 +5,19 @@ def get_strandness(units):
         strand_list=["none"]
         return strand_list*units.shape[0]
 
+def get_counts(units):
+    tabs = []
+    for t in units.itertuples():
+        if is_single_end(t.sample, t.unit):
+            tabs.append(f"star/{t.sample}-{t.unit}/ReadsPerGene.se.out.tab")
+        else:
+            tabs.append(f"star/{t.sample}-{t.unit}/ReadsPerGene.pe.out.tab")
+    return tabs
+
 rule count_matrix:
     input:
-        expand("star/{unit.sample}-{unit.unit}/ReadsPerGene.out.tab", unit=units.itertuples())
+#        expand("star/{unit.sample}-{unit.unit}/ReadsPerGene.out.tab", unit=units.itertuples())
+        get_counts(units)
     output:
         "counts/all.tsv"
     params:

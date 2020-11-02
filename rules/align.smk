@@ -4,10 +4,10 @@ rule align_pe:
         fq2="trimmed/{sample}-{unit}.2.trim.fastq.gz"
     output:
         # see STAR manual for additional output files
-        "star/{sample}-{unit}/Aligned.out.bam",
-        "star/{sample}-{unit}/ReadsPerGene.out.tab"
+        "star/{sample}-{unit}/Aligned.pe.out.bam",
+        "star/{sample}-{unit}/ReadsPerGene.pe.out.tab"
     log:
-        "logs/star/{sample}-{unit}.log"
+        "logs/star/{sample}-{unit}.pe.log"
     params:
         # path to STAR reference genome index
         index=config["ref"]["index"],
@@ -23,10 +23,10 @@ rule align_se:
         fq1="trimmed/{sample}-{unit}.trim.fastq.gz"
     output:
         # see STAR manual for additional output files
-        "star/{sample}-{unit}/Aligned.out.bam",
-        "star/{sample}-{unit}/ReadsPerGene.out.tab"
+        "star/{sample}-{unit}/Aligned.se.out.bam",
+        "star/{sample}-{unit}/ReadsPerGene.se.out.tab"
     log:
-        "logs/star/{sample}-{unit}.log"
+        "logs/star/{sample}-{unit}.se.log"
     params:
         # path to STAR reference genome index
         index=config["ref"]["index"],
