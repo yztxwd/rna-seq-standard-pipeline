@@ -9,11 +9,11 @@ samples: samples.tsv
 
 units: units.tsv
 
-trimming:
-  # skip trimming: false or true
-  skip: false
-  # the sequencing adapter
-  adapter: ACGGATCGATCGATCGATCGAT
+trimmomatic:
+  trimmer: "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:15"
+  pe_adapter: "path/to/pe/adapter"
+  se_adapter: "path/to/se/adapter"
+  adapter_trimmer: ":2:30:10"
 
 ref:
   # the STAR index
@@ -35,5 +35,3 @@ diffexp:
 
 params:
   star: ""
-  cutadapt-se: ""
-  cutadapt-pe: ""
