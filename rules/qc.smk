@@ -1,3 +1,12 @@
+def get_bams(units):
+    bams = []
+    for t in units.itertuples():
+        if is_single_end(t.sample, t.unit):
+            bams.append(f"star/{t.sample}-{t.unit}/Aligned.se.out.bam")
+        else:
+            bams.append(f"star/{t.sample}-{t.unit}/Aligned.pe.out.bam")
+    return bams
+
 ## RSEQC
 
 rule rseqc_gtf2bed:
@@ -147,7 +156,8 @@ rule rseqc_readgc:
 
 rule multiqc:
     input:
-        expand("star/{unit.sample}-{unit.unit}/Aligned.out.bam", unit=units.itertuples()),
+#        expand("star/{unit.sample}-{unit.unit}/Aligned.out.bam", unit=units.itertuples()),
+        get_bams(units),
         expand("qc/rseqc/{unit.sample}-{unit.unit}.junctionanno.junction.bed", unit=units.itertuples()),
         expand("qc/rseqc/{unit.sample}-{unit.unit}.junctionsat.junctionSaturation_plot.pdf", unit=units.itertuples()),
         expand("qc/rseqc/{unit.sample}-{unit.unit}.infer_experiment.txt", unit=units.itertuples()),
