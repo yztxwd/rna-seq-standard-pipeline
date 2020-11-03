@@ -16,7 +16,7 @@ rule align_pe:
               config["ref"]["annotation"], config["params"]["star"])
     threads: 24
     wrapper:
-        "0.63.0/bio/star/align"
+        f"file:{snake_dir}/wrappers/star/align"
 
 rule align_se:
     input:
@@ -35,5 +35,5 @@ rule align_se:
               config["ref"]["annotation"], config["params"]["star"])
     threads: 24
     wrapper:
-        "0.63.0/bio/star/align"
+        f"file:{snake_dir}/wrappers/star/align"
 

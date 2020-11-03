@@ -172,4 +172,4 @@ rule multiqc:
     log:
         "logs/multiqc.log"
     wrapper:
-        "0.31.1/bio/multiqc"
+        f"file:{snake_dir}/wrappers/multiqc"

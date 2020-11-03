@@ -14,7 +14,7 @@ rule trim_pe:
     threads:
         config["threads"]
     wrapper:
-        "0.49.0/bio/trimmomatic/pe"
+        f"file:{snake_dir}/wrappers/trimmomatic/pe"
 
 rule trim_se:
     input:
@@ -28,4 +28,4 @@ rule trim_se:
     threads:
         config["threads"]
     wrapper:
-        "0.49.0/bio/trimmomatic/se"
+        f"file:{snake_dir}/wrappers/trimmomatic/se"
